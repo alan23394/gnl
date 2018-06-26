@@ -9,11 +9,13 @@ int		main()
 	char	*buf;
 
 	fd = open("testfile", O_RDONLY);
-	buf = ft_memalloc(sizeof(char) * BUFF_SIZE);
-	ret = get_next_line(fd, &buf);
-	ft_putstr("buf: ");
-	ft_putstr(buf);
+	ft_putstr("fd: ");
+	ft_putnbr(fd);
 	ft_putchar('\n');
+	ret = get_next_line(fd, &buf);
+	ft_putstr("buf: \"");
+	ft_putstr(buf);
+	ft_putstr("\"\n");
 	ft_putstr("ret: ");
 	ft_putnbr(ret);
 	ft_putchar('\n');

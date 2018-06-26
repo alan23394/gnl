@@ -14,6 +14,7 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
+	ft_putstr("in here\n");
 	char	*cur;
 
 	cur = dst;

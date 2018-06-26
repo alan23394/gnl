@@ -14,5 +14,6 @@
 
 char	*ft_strcpy(char *dst, const char *src)
 {
+	ft_putstr("in here\n");
 	return (ft_strncpy(dst, src, ft_strlen(src) + 1));
 }
