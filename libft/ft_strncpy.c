@@ -6,7 +6,7 @@
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/14 21:13:52 by abarnett          #+#    #+#             */
-/*   Updated: 2018/06/04 14:29:17 by abarnett         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:31:35 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	ft_putstr("in here\n");
 	char	*cur;
 
 	cur = dst;
