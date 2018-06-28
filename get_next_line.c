@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 t_file	*new_file(int fd)
 {
@@ -52,6 +53,17 @@ t_list	*get_fd(t_list *head, int fd)
 	return (0);
 }
 
+char	*strextend(char *buf)
+{
+	char	*new;
+
+	new = ft_strnew(ft_strlen(buf) + BUFF_SIZE);
+	if (!new)
+		return (0);
+	new = ft_strncpy(new, buf, ft_strlen(buf));
+	return (new);
+}
+
 int		get_next_line(const int fd, char **line)
 {
 	static t_list	*head;
@@ -61,36 +73,17 @@ int		get_next_line(const int fd, char **line)
 	if (!head)
 		head = get_fd(0, fd);
 	cur = get_fd(head, fd);
-	printf("%p\n", head);
-	printf("%p\n", cur);
+	printf("head: %p\n", head);
+	printf("cur: %p\n", cur);
 	ft_putnbr(FD(cur));
 	ft_putchar('\n');
 	if (!line || !cur)
 		return (-1);
-	/*
-	ft_putstr("how about here?\n");
-	tmp = BUF(cur);
-	ft_putstr("?\n");
-	for (int i = 0; i < BUFF_SIZE; ++i)
-	{
-		ft_putstr("?\n");
-		ft_putchar(*tmp + 48);
-		ft_putchar('\n');
-		++tmp;
-	}
-	*/
-	if (!BUF(head))
-		ft_putstr("no BUF(head)\n");
-	printf("%p\n", BUF(cur));
-	if (!BUF(cur))
-		ft_putstr("no BUF(cur)\n");
-	ft_putstr("before buf dereference\n");
-	if (!*BUF(cur))
+	if (!ft_strchr(BUF(cur), '\n'))
 	{
 		ft_putstr("reading\n");
-		read(fd, BUF(cur), BUFF_SIZE);
+		read(fd, (BUF(cur) + ft_strlen(BUF(cur))), (BUFF_SIZE - (ft_strlen(BUF(cur)) % BUFF_SIZE)));
 	}
-	ft_putstr("after buf dereference\n");
 	ft_putnbr(ft_strlen(BUF(cur)));
 	ft_putchar('\n');
 	ft_putnbr(ft_strlen(*line));
@@ -100,14 +93,23 @@ int		get_next_line(const int fd, char **line)
 	if (!ft_strchr(BUF(cur), '\n'))
 	{
 		ft_putstr("before this part\n");
-		*line = ft_strcpy(ft_memalloc(ft_strlen(*line) + BUFF_SIZE), *line);
+		BUF(cur) = strextend(BUF(cur));
 		ft_putstr("after this part\n");
 	}
 	else
 	{
 		printf("%p - %p = ", ft_strchr(BUF(cur), '\n'), BUF(cur));
 		printf("%ld\n", ft_strchr(BUF(cur), '\n') - BUF(cur));
-		*line = ft_strsub(BUF(cur), 0, ft_strchr(BUF(cur), '\n') - BUF(cur));
+		//*line = ft_strsub(BUF(cur), 0, ft_strchr(BUF(cur), '\n') - BUF(cur));
+		//BUF(cur) = ft_strncpy(ft_memalloc(BUFF_SIZE), BUF(cur) + ft_strchr(BUF(cur), '\n'), BUFF_SIZE);
+		*line = ft_strnew(ft_strchr(BUF(cur), '\n') - BUF(cur));
+		if (!*line)
+			return (-1);
+		*line = ft_strncpy(*line, BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur));
+		BUF(cur) = ft_strsub(BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, BUFF_SIZE);
+		ft_putstr("BUF(cur) after shift: ");
+		ft_putstr(BUF(cur));
+		ft_putchar('\n');
 	}
-		return (1);
-	}
+	return (1);
+}
