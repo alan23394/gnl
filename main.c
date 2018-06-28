@@ -4,49 +4,28 @@
 
 int		main(int argc, char **argv)
 {
-	int		fd1;
-	//int		fd2;
+	int		fd;
 	char	*buf;
 	int		ret;
 
-	/*
-	if (argc != 3)
-	{
-		ft_putendl("usage: ./gnl <fildes1> <fildes2>");
-		return (0);
-	}
-	*/
 	if (argc != 2)
 	{
-		ft_putendl("usage: ./gnl <fildes1>"/* <fildes2>"*/);
+		ft_putendl("usage: ./gnl <fildes>");
 		return (0);
 	}
-	if (!ft_strequ(argv[1], "stdin"))
-	{
-		fd1 = open(argv[1], O_RDONLY);
-		ft_putstr("fd1: ");
-		ft_putnbr(fd1);
-		ft_putchar('\n');
-	}
+	if (ft_strequ(argv[1], "stdin"))
+		fd = 0;
 	else
-		fd1 = 0;
-	/*
-	if (!ft_strequ(argv[2], "stdin"))
-	{
-		fd2 = open(argv[1], O_RDONLY);
-		ft_putstr("fd2: ");
-		ft_putnbr(fd2);
-		ft_putchar('\n');
-	}
-	else
-		fd2 = 0;
-	*/
+		fd = open(argv[1], O_RDONLY);
+	ft_putstr("fd: ");
+	ft_putnbr(fd);
+	ft_putchar('\n');
 	ft_putstr("BUFF_SIZE: ");
 	ft_putnbr(BUFF_SIZE);
 	ft_putchar('\n');
-	while ((ret = get_next_line(fd1, &buf)) && ret != -1)
+	while ((ret = get_next_line(fd, &buf)) && ret != -1)
 	{
-		ft_putstr("fd1: \"");
+		ft_putstr("buf: \"");
 		ft_putstr(buf);
 		ft_putstr("\"\n");
 	}

@@ -70,41 +70,25 @@ int		get_next_line(const int fd, char **line)
 	t_list			*cur;
 	int				ret;
 
-	write(1,"i\n",2);
 	if (fd < 0)
 		return (-1);
 	if (!head)
 		head = get_fd(0, fd);
 	cur = get_fd(head, fd);
-	ft_putstr("fd: ");
-	ft_putnbr(fd);
-	ft_putchar('\n');
-	write(1,"1\n",2);
-	if (!line || !cur || !cur->content)
-	{
-		ft_putstr("returning -1\n");
+	if (!line || !cur || !cur->content || !BUF(cur))
 		return (-1);
-	}
-	if (!BUF(cur))
-	{
-		ft_putstr("buf is gone -1\n");
-		return (-1);
-	}
-	write(1,"2\n",2);
 	ret = 1;
 	while (!ft_strchr(BUF(cur), '\n') && ret > 0)
 	{
 		if (!(ft_strlen(BUF(cur)) % BUFF_SIZE))
-		{
-			write(1,"2a\n",3);
 			BUF(cur) = strextend(BUF(cur));
-		}
-		if (!(ret = read(fd, (BUF(cur) + ft_strlen(BUF(cur))), (BUFF_SIZE - (ft_strlen(BUF(cur)) % BUFF_SIZE)))))
-		{
-			write(1,"2b\n",3);
-		}
+		ret = read(fd, (BUF(cur) + ft_strlen(BUF(cur))), (BUFF_SIZE - (ft_strlen(BUF(cur)) % BUFF_SIZE)));
+		ft_putstr("ret: ");
+		ft_putnbr(ret);
+		ft_putchar('\n');
+		if (ret == -1)
+			return (-1);
 	}
-	write(1,"3\n",2);
 	if (!ft_strchr(BUF(cur), '\n') && !ret)
 	{
 		*line = ft_strnew(ft_strlen(BUF(cur)));
@@ -113,15 +97,11 @@ int		get_next_line(const int fd, char **line)
 	}
 	else
 		*line = ft_strnew(ft_strchr(BUF(cur), '\n') - BUF(cur));
-	write(1,"4\n",2);
 	if (!*line)
 		return (-1);
-	write(1,"5\n",2);
 	*line = ft_strncpy(*line, BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur));
 	BUF(cur) = ft_strsub(BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, BUFF_SIZE);
-	write(1,"6\n",2);
 	if (!ret)
 		return (0);
-	write(1,"o\n",2);
 	return (1);
 }
