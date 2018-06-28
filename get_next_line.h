@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include "libft.h"
 
-# define BUFF_SIZE 128
+# define BUFF_SIZE 32
 # define FD(cur) (((t_file *)(cur->content))->fd)
 # define BUF(cur) (((t_file *)(cur->content))->buf)
 

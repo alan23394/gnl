@@ -28,11 +28,13 @@ t_list	*get_fd(t_list *head, int fd)
 {
 	if (!head)
 	{
+		ft_putstr("no head\n");
 		head = ft_lstnew(new_file(fd), sizeof(t_file *));
 		BUF(head) = ft_strnew(BUFF_SIZE);
 	}
 	if (!head->content)
 	{
+		ft_putstr("no head->content\n");
 		head->content = new_file(fd);
 		BUF(head) = ft_strnew(BUFF_SIZE);
 		head->content_size = sizeof(t_file *);
@@ -42,7 +44,10 @@ t_list	*get_fd(t_list *head, int fd)
 		if (FD(head) == fd)
 			return (head);
 		if (!head->next)
+		{
 			head->next = ft_lstnew(new_file(fd), sizeof(t_file *));
+			BUF(head->next) = ft_strnew(BUFF_SIZE);
+		}
 		head = head->next;
 	}
 	return (0);
@@ -63,22 +68,44 @@ int		get_next_line(const int fd, char **line)
 {
 	static t_list	*head;
 	t_list			*cur;
-	int				done;
+	int				ret;
 
+	write(1,"i\n",2);
+	if (fd < 0)
+		return (-1);
 	if (!head)
 		head = get_fd(0, fd);
 	cur = get_fd(head, fd);
-	if (!line || !cur)
+	ft_putstr("fd: ");
+	ft_putnbr(fd);
+	ft_putchar('\n');
+	write(1,"1\n",2);
+	if (!line || !cur || !cur->content)
+	{
+		ft_putstr("returning -1\n");
 		return (-1);
-	done = 0;
-	while (!ft_strchr(BUF(cur), '\n') && !done)
+	}
+	if (!BUF(cur))
+	{
+		ft_putstr("buf is gone -1\n");
+		return (-1);
+	}
+	write(1,"2\n",2);
+	ret = 1;
+	while (!ft_strchr(BUF(cur), '\n') && ret > 0)
 	{
 		if (!(ft_strlen(BUF(cur)) % BUFF_SIZE))
+		{
+			write(1,"2a\n",3);
 			BUF(cur) = strextend(BUF(cur));
-		if (!read(fd, (BUF(cur) + ft_strlen(BUF(cur))), (BUFF_SIZE - (ft_strlen(BUF(cur)) % BUFF_SIZE))))
-			done = 1;
+		}
+		if (!(ret = read(fd, (BUF(cur) + ft_strlen(BUF(cur))), (BUFF_SIZE - (ft_strlen(BUF(cur)) % BUFF_SIZE)))))
+		{
+			write(1,"2b\n",3);
+		}
 	}
-	if (!ft_strchr(BUF(cur), '\n') && done)
+	write(1,"3\n",2);
+	if (!ft_strchr(BUF(cur), '\n') && !ret)
 	{
 		*line = ft_strnew(ft_strlen(BUF(cur)));
 		*line = ft_strncpy(*line, BUF(cur), ft_strlen(BUF(cur)));
@@ -86,11 +113,15 @@ int		get_next_line(const int fd, char **line)
 	}
 	else
 		*line = ft_strnew(ft_strchr(BUF(cur), '\n') - BUF(cur));
+	write(1,"4\n",2);
 	if (!*line)
 		return (-1);
+	write(1,"5\n",2);
 	*line = ft_strncpy(*line, BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur));
 	BUF(cur) = ft_strsub(BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, BUFF_SIZE);
-	if (done)
+	write(1,"6\n",2);
+	if (!ret)
 		return (0);
+	write(1,"o\n",2);
 	return (1);
 }
