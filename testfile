@@ -1,4 +1,7 @@
+short
+text on a line
 This is some example dummy text
+This is some example dummy text that's longer
 It has a few lines
 which my program should read
 i hope it does well

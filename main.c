@@ -19,5 +19,13 @@ int		main()
 	ft_putstr("ret: ");
 	ft_putnbr(ret);
 	ft_putchar('\n');
+	ft_putchar('\n');
+	ret = get_next_line(fd, &buf);
+	ft_putstr("buf: \"");
+	ft_putstr(buf);
+	ft_putstr("\"\n");
+	ft_putstr("ret: ");
+	ft_putnbr(ret);
+	ft_putchar('\n');
 	return (0);
 }
