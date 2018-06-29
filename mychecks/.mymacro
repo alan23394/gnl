@@ -1,0 +1,1 @@
+BUFF_SIZE should be used as the third parameter of the function 'read' without any handling! read([*], [*], BUFF_SIZE)\n\nCheck the line(s) where the function 'read' is used:\nret = read(fd, (BUF(cur) + ft_strlen(BUF(cur))), (BUFF_SIZE - (ft_strlen(BUF(cur)) % BUFF_SIZE)));\n\nNote: When multiple lines are used for calling 'read', this test fails!

@@ -1,0 +1,82 @@
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/get_next_line.h
+Error: global scope bad aligned
+Error: 42 header not at top of the file
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strrchr.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_putstr.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/main.c
+Error: 42 header not at top of the file
+Error (line 5): function main has 33 lines
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_islower.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strcmp.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_memcpy.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_memmove.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_isspace.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strsplit.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_lstlen.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/get_next_line.c
+Error (line 67): function get_next_line has 38 lines
+Error (line 85): line has 107 characters
+Error (line 103): line has 89 characters
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strlcat.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strncpy.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_lstmap.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_lstadd.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_striter.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strstr.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_isdigit.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_putnbr.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_isupper.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strdel.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_memccpy.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_numlen_base.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_count_words.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_bzero.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_memchr.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_isalnum.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_putstr_fd.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strapp.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_lstiter.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_lstdelone.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_toupper.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strcpy.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strdup.c
+Error (line 20): C++ comment
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_lstnew.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_putnbr_fd.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_dstrlen.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_striteri.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strmap.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_putendl_fd.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_memdel.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_putchar.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_isascii.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strlen.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strnstr.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strnew.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_memalloc.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strsub.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_putendl.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_nmemset.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strncat.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strncmp.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_itoa.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_memcmp.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strequ.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strtrim.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_putchar_fd.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_memset.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_isalpha.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strcat.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_tolower.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strnequ.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_itoa_base.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strjoin.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_atoi.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strclr.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strmapi.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_isprint.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_lstdel.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_numlen.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strinit.c
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/includes/libft.h
+Norme: /nfs/2017/a/abarnett/cadet/gitgnl/libft/ft_strchr.c
