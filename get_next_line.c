@@ -28,16 +28,9 @@ t_list	*get_fd(t_list *head, int fd)
 {
 	if (!head)
 	{
-		ft_putstr("no head\n");
 		head = ft_lstnew(new_file(fd), sizeof(t_file *));
-		BUF(head) = ft_strnew(BUFF_SIZE);
-	}
-	if (!head->content)
-	{
-		ft_putstr("no head->content\n");
-		head->content = new_file(fd);
-		BUF(head) = ft_strnew(BUFF_SIZE);
-		head->content_size = sizeof(t_file *);
+		if (head && head->content)
+			BUF(head) = ft_strnew(BUFF_SIZE);
 	}
 	while (head && head->content)
 	{
@@ -46,7 +39,8 @@ t_list	*get_fd(t_list *head, int fd)
 		if (!head->next)
 		{
 			head->next = ft_lstnew(new_file(fd), sizeof(t_file *));
-			BUF(head->next) = ft_strnew(BUFF_SIZE);
+			if (head->next && head->next->content)
+				BUF(head->next) = ft_strnew(BUFF_SIZE);
 		}
 		head = head->next;
 	}
@@ -61,6 +55,7 @@ char	*strextend(char *buf)
 	if (!new)
 		return (0);
 	new = ft_strncpy(new, buf, ft_strlen(buf));
+	ft_strdel(&buf);
 	return (new);
 }
 
@@ -70,29 +65,29 @@ int		get_next_line(const int fd, char **line)
 	t_list			*cur;
 	int				ret;
 
-	if (fd < 0)
+	if (read(fd, 0, 0) == -1 || !line)
 		return (-1);
 	if (!head)
 		head = get_fd(0, fd);
-	cur = get_fd(head, fd);
-	if (!line || !cur || !cur->content || !BUF(cur))
+	if (!head)
 		return (-1);
+	cur = get_fd(head, fd);
+	if (!cur)
+		return (-1);
+	if (!BUF(cur))
+		return (0);
 	ret = 1;
 	while (!ft_strchr(BUF(cur), '\n') && ret > 0)
 	{
 		if (!(ft_strlen(BUF(cur)) % BUFF_SIZE))
 			BUF(cur) = strextend(BUF(cur));
 		ret = read(fd, (BUF(cur) + ft_strlen(BUF(cur))), (BUFF_SIZE - (ft_strlen(BUF(cur)) % BUFF_SIZE)));
-		ft_putstr("ret: ");
-		ft_putnbr(ret);
-		ft_putchar('\n');
-		if (ret == -1)
-			return (-1);
 	}
 	if (!ft_strchr(BUF(cur), '\n') && !ret)
 	{
 		*line = ft_strnew(ft_strlen(BUF(cur)));
 		*line = ft_strncpy(*line, BUF(cur), ft_strlen(BUF(cur)));
+		ft_memdel((void **)&BUF(cur));
 		return (0);
 	}
 	else
@@ -101,7 +96,5 @@ int		get_next_line(const int fd, char **line)
 		return (-1);
 	*line = ft_strncpy(*line, BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur));
 	BUF(cur) = ft_strsub(BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, BUFF_SIZE);
-	if (!ret)
-		return (0);
 	return (1);
 }
