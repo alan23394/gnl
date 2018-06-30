@@ -47,15 +47,15 @@ t_list	*get_fd(t_list *head, int fd)
 	return (0);
 }
 
-char	*strextend(char *buf)
+char	*strextend(char **buf, size_t size)
 {
 	char	*new;
 
-	new = ft_strnew(ft_strlen(buf) + BUFF_SIZE);
+	new = ft_strnew(ft_strlen(*buf) + size);
 	if (!new)
 		return (0);
-	new = ft_strncpy(new, buf, ft_strlen(buf));
-	ft_strdel(&buf);
+	new = ft_strncpy(new, *buf, ft_strlen(*buf));
+	ft_strdel(buf);
 	return (new);
 }
 
@@ -79,16 +79,21 @@ int		get_next_line(const int fd, char **line)
 	ret = 1;
 	while (!ft_strchr(BUF(cur), '\n') && ret > 0)
 	{
-		if (!(ft_strlen(BUF(cur)) % BUFF_SIZE))
-			BUF(cur) = strextend(BUF(cur));
-		ret = read(fd, (BUF(cur) + ft_strlen(BUF(cur))), (BUFF_SIZE - (ft_strlen(BUF(cur)) % BUFF_SIZE)));
+		BUF(cur) = strextend(&BUF(cur), BUFF_SIZE);
+		if (!BUF(cur))
+			return (-1);
+		ret = read(fd, (BUF(cur) + ft_strlen(BUF(cur))), BUFF_SIZE);
+		if (ret < 0)
+			return (-1);
 	}
 	if (!ft_strchr(BUF(cur), '\n') && !ret)
 	{
-		*line = ft_strnew(ft_strlen(BUF(cur)));
-		*line = ft_strncpy(*line, BUF(cur), ft_strlen(BUF(cur)));
-		ft_memdel((void **)&BUF(cur));
-		return (0);
+		*line = strextend(&BUF(cur), 0);
+		if (!*line)
+			return (-1);
+		if (!**line)
+			return (0);
+		return (1);
 	}
 	else
 		*line = ft_strnew(ft_strchr(BUF(cur), '\n') - BUF(cur));
@@ -96,5 +101,7 @@ int		get_next_line(const int fd, char **line)
 		return (-1);
 	*line = ft_strncpy(*line, BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur));
 	BUF(cur) = ft_strsub(BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, BUFF_SIZE);
+	if (!*line || !BUF(cur))
+		return (-1);
 	return (1);
 }
