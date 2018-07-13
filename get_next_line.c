@@ -6,7 +6,7 @@
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:15:00 by abarnett          #+#    #+#             */
-/*   Updated: 2018/06/27 20:17:08 by marvin           ###   ########.fr       */
+/*   Updated: 2018/07/12 17:58:34 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,9 @@ int		get_next_line(const int fd, char **line)
 
 	if (read(fd, 0, 0) == -1 || !line)
 		return (-1);
-	if (!head)
-		head = get_fd(0, fd);
-	if (!head)
+	if (!head && !(head = get_fd(0, fd)))
 		return (-1);
-	cur = get_fd(head, fd);
-	if (!cur)
+	if (!(cur = get_fd(head, fd)))
 		return (-1);
 	if (!BUF(cur))
 		return (0);

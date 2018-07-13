@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/23 12:4:58 by abarnett          #+#    #+#             */
-/*   Updated: 2018/06/26 15:29:37 by abarnett         ###   ########.fr       */
+/*   Created: 2018/06/23 12:41:58 by abarnett          #+#    #+#             */
+/*   Updated: 2018/07/10 13:19:23 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct	s_file
 	char		*buf;
 }				t_file;
 
-t_file	*new_file(int fd);
-t_list	*get_fd(t_list *head, int fd);
-int		get_next_line(const int fd, char **line);
+t_file			*new_file(int fd);
+t_list			*get_fd(t_list *head, int fd);
+int				get_next_line(const int fd, char **line);
 
 #endif

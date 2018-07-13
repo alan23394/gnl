@@ -2,8 +2,9 @@
 #include "get_next_line.h"
 #include "libft.h"
 
-int		main(int argc, char **argv)
+int		main()
 {
+	/*
 	int		fd;
 	char	*buf;
 	int		ret;
@@ -37,4 +38,13 @@ int		main(int argc, char **argv)
 	if (ret == 0)
 		ft_putstr("gnl: done\n");
 	return (0);
+	*/
+	char  *line = NULL;
+  	int   fd = open("gnl10.txt", O_RDONLY);
+	ft_putnbr(fd);
+	ft_putchar('\n');
+  	get_next_line(fd, &line);
+  	close(fd);
+	sleep(5);
+  	return (0);
 }
