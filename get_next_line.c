@@ -6,7 +6,7 @@
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:15:00 by abarnett          #+#    #+#             */
-/*   Updated: 2018/07/13 21:21:28 by abarnett         ###   ########.fr       */
+/*   Updated: 2018/07/14 11:58:33 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,28 @@ char	*stresize(char **buf, int start, size_t size)
 	return (new);
 }
 
+int		process_line(t_list *cur, int ret, char **line)
+{
+	if (!ft_strchr(BUF(cur), '\n') && !ret)
+	{
+		*line = stresize(&BUF(cur), 0, 0);
+		if (!*line)
+			return (-1);
+		if (!**line)
+			return (0);
+		return (1);
+	}
+	else
+		*line = ft_strnew(ft_strchr(BUF(cur), '\n') - BUF(cur));
+	if (!*line)
+		return (-1);
+	*line = ft_strncpy(*line, BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur));
+	BUF(cur) = stresize(&BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, 0);
+	if (!*line || !BUF(cur))
+		return (-1);
+	return (1);
+}
+
 int		get_next_line(const int fd, char **line)
 {
 	static t_list	*head;
@@ -89,22 +111,5 @@ int		get_next_line(const int fd, char **line)
 		if (ret < 0)
 			return (-1);
 	}
-	if (!ft_strchr(BUF(cur), '\n') && !ret)
-	{
-		*line = stresize(&BUF(cur), 0, 0);
-		if (!*line)
-			return (-1);
-		if (!**line)
-			return (0);
-		return (1);
-	}
-	else
-		*line = ft_strnew(ft_strchr(BUF(cur), '\n') - BUF(cur));
-	if (!*line)
-		return (-1);
-	*line = ft_strncpy(*line, BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur));
-	BUF(cur) = stresize(&BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, 0);
-	if (!*line || !BUF(cur))
-		return (-1);
-	return (1);
+	return (process_line(cur, ret, line));
 }
