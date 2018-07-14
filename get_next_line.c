@@ -6,7 +6,7 @@
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:15:00 by abarnett          #+#    #+#             */
-/*   Updated: 2018/07/12 17:58:34 by abarnett         ###   ########.fr       */
+/*   Updated: 2018/07/13 20:48:49 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ t_file	*new_file(int fd)
 
 t_list	*get_fd(t_list *head, int fd)
 {
+	t_file	*file;
 	if (!head)
 	{
-		head = ft_lstnew(new_file(fd), sizeof(t_file *));
+		file = new_file(fd);
+		head = ft_lstnew(file, sizeof(t_file));
 		if (head && head->content)
 			BUF(head) = ft_strnew(BUFF_SIZE);
+		ft_memdel((void **)&file);
 	}
 	while (head && head->content)
 	{
@@ -38,23 +41,25 @@ t_list	*get_fd(t_list *head, int fd)
 			return (head);
 		if (!head->next)
 		{
-			head->next = ft_lstnew(new_file(fd), sizeof(t_file *));
+			file = new_file(fd);
+			head->next = ft_lstnew(file, sizeof(t_file));
 			if (head->next && head->next->content)
 				BUF(head->next) = ft_strnew(BUFF_SIZE);
+			ft_memdel((void **)&file);
 		}
 		head = head->next;
 	}
 	return (0);
 }
 
-char	*strextend(char **buf, size_t size)
+char	*stresize(char **buf, int start, size_t size)
 {
 	char	*new;
 
-	new = ft_strnew(ft_strlen(*buf) + size);
+	new = ft_strnew(ft_strlen(*buf + start) + size);
 	if (!new)
 		return (0);
-	new = ft_strncpy(new, *buf, ft_strlen(*buf));
+	new = ft_strncpy(new, *buf + start, ft_strlen(*buf + start));
 	ft_strdel(buf);
 	return (new);
 }
@@ -76,7 +81,7 @@ int		get_next_line(const int fd, char **line)
 	ret = 1;
 	while (!ft_strchr(BUF(cur), '\n') && ret > 0)
 	{
-		BUF(cur) = strextend(&BUF(cur), BUFF_SIZE);
+		BUF(cur) = stresize(&BUF(cur), 0, BUFF_SIZE);
 		if (!BUF(cur))
 			return (-1);
 		ret = read(fd, (BUF(cur) + ft_strlen(BUF(cur))), BUFF_SIZE);
@@ -85,7 +90,7 @@ int		get_next_line(const int fd, char **line)
 	}
 	if (!ft_strchr(BUF(cur), '\n') && !ret)
 	{
-		*line = strextend(&BUF(cur), 0);
+		*line = stresize(&BUF(cur), 0, 0);
 		if (!*line)
 			return (-1);
 		if (!**line)
@@ -97,7 +102,7 @@ int		get_next_line(const int fd, char **line)
 	if (!*line)
 		return (-1);
 	*line = ft_strncpy(*line, BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur));
-	BUF(cur) = ft_strsub(BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, BUFF_SIZE);
+	BUF(cur) = stresize(&BUF(cur), ft_strchr(BUF(cur), '\n') - BUF(cur) + 1, 0);
 	if (!*line || !BUF(cur))
 		return (-1);
 	return (1);
