@@ -6,7 +6,7 @@
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:15:00 by abarnett          #+#    #+#             */
-/*   Updated: 2018/07/13 20:48:49 by abarnett         ###   ########.fr       */
+/*   Updated: 2018/07/13 21:21:28 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_file	*new_file(int fd)
 t_list	*get_fd(t_list *head, int fd)
 {
 	t_file	*file;
+
 	if (!head)
 	{
 		file = new_file(fd);
