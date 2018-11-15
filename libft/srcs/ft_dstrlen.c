@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_numlen_base.c                                   :+:      :+:    :+:   */
+/*   ft_dstrlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/06 16:23:46 by abarnett          #+#    #+#             */
-/*   Updated: 2018/06/06 17:24:01 by abarnett         ###   ########.fr       */
+/*   Created: 2018/05/26 12:19:17 by abarnett          #+#    #+#             */
+/*   Updated: 2018/09/03 21:45:30 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_numlen_base(long num, int base)
+size_t	ft_dstrlen(const char *str, char del)
 {
-	int length;
+	int	i;
 
-	length = 1;
-	if (num < 0)
-	{
-		num *= -1;
-		++length;
-	}
-	while (num >= base)
-	{
-		num /= base;
-		++length;
-	}
-	return (length);
+	i = 0;
+	while (str[i] && str[i] != del)
+		i++;
+	return (i);
 }

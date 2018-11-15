@@ -1,1 +1,0 @@
-this is a line that's kinda long, probably longer than 20 characters. It should be printed in it's entirety by my function, even though there's no newline at the end of it

@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlen.c                                        :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/21 09:33:28 by abarnett          #+#    #+#             */
-/*   Updated: 2018/06/21 10:12:39 by abarnett         ###   ########.fr       */
+/*   Created: 2018/05/26 10:14:30 by abarnett          #+#    #+#             */
+/*   Updated: 2018/11/06 14:34:01 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strinit(size_t size, int c)
+size_t		ft_numlen(long num)
 {
-	return ((char *)ft_nmemset(malloc(size + 1), c, size + 1));
+	size_t	length;
+
+	length = 1;
+	if (num < 0)
+	{
+		num *= -1;
+		++length;
+	}
+	while (num >= 10)
+	{
+		num /= 10;
+		++length;
+	}
+	return (length);
 }

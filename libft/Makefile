@@ -6,22 +6,22 @@
 #    By: abarnett <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/17 14:22:04 by abarnett          #+#    #+#              #
-#    Updated: 2018/07/10 14:38:40 by abarnett         ###   ########.fr        #
+#    Updated: 2018/11/14 18:03:13 by abarnett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := libft.a
-C_SRCS := $(wildcard ./*.c)
-C_OBJS := $(patsubst %.c,%.o,$(C_SRCS))
-INCLUDE_DIRS := ./includes
-CFLAGS += -Wall -Wextra -Werror -g -I$(INCLUDE_DIRS)
+NAME :=			libft.a
 
-.PHONY: all clean fclean re
+C_OBJS :=		$(patsubst %.c,%.o,$(wildcard ./srcs/*.c))
+INCLUDE_DIR :=	./includes
+
+CFLAGS +=		-Wall -Wextra -Werror -I$(INCLUDE_DIR)
+
+.PHONY:			all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(C_SRCS)
-	$(CC) $(CFLAGS) -c $(C_SRCS)
+$(NAME): $(C_OBJS)
 	ar rc $(NAME) $(C_OBJS)
 	ranlib $(NAME)
 

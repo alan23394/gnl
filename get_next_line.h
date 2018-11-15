@@ -6,7 +6,7 @@
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 12:41:58 by abarnett          #+#    #+#             */
-/*   Updated: 2018/07/10 13:19:23 by abarnett         ###   ########.fr       */
+/*   Updated: 2018/09/03 21:59:31 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include "libft.h"
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 128
 # define FD(cur) (((t_file *)(cur->content))->fd)
 # define BUF(cur) (((t_file *)(cur->content))->buf)
 

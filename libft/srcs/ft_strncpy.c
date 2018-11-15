@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dstrlen.c                                       :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/26 12:19:17 by abarnett          #+#    #+#             */
-/*   Updated: 2018/05/31 15:20:57 by abarnett         ###   ########.fr       */
+/*   Created: 2018/05/14 21:13:52 by abarnett          #+#    #+#             */
+/*   Updated: 2018/06/04 14:29:17 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_dstrlen(const char *str, char del)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	int	i;
+	char	*cur;
 
-	i = 0;
-	while (str[i] && str[i] != del)
-		i++;
-	return (i);
+	cur = dst;
+	while (len && *src)
+	{
+		*cur++ = *src++;
+		--len;
+	}
+	if (len)
+		ft_memset(cur, '\0', len);
+	return (dst);
 }

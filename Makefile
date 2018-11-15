@@ -6,17 +6,19 @@
 #    By: abarnett <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/22 07:28:52 by abarnett          #+#    #+#              #
-#    Updated: 2018/07/12 18:58:06 by abarnett         ###   ########.fr        #
+#    Updated: 2018/11/14 17:51:52 by abarnett         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := gnl
-C_OBJS := $(patsubst %.c,%.o,$(wildcard ./*.c))
-INCLUDE_DIRS := ./libft/includes
-CFLAGS += -Wall -Wextra -Werror -g -fsanitize=address -I$(INCLUDE_DIRS)
-LDFLAGS += -L./libft -lft
+NAME :=			gnl
 
-.PHONY: all clean fclean re
+C_OBJS :=		$(patsubst %.c,%.o,$(wildcard ./*.c))
+INCLUDE_DIR :=	./libft/includes
+
+CFLAGS +=		-Wall -Wextra -Werror -I$(INCLUDE_DIR)
+LDFLAGS +=		-L./libft -lft
+
+.PHONY:			all clean fclean re
 
 all: $(NAME)
 

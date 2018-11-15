@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/07 12:48:31 by abarnett          #+#    #+#             */
-/*   Updated: 2018/06/08 12:49:36 by abarnett         ###   ########.fr       */
+/*   Created: 2018/05/14 21:13:53 by abarnett          #+#    #+#             */
+/*   Updated: 2018/05/14 21:29:44 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_lstlen(t_list *head)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	int	count;
-
-	count = 0;
-	while (head && head->content)
-	{
-		count++;
-		head = head->next;
-	}
-	return (count);
+	return (ft_strncpy(dst, src, ft_strlen(src) + 1));
 }

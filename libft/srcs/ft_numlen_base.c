@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_numlen_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarnett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/14 21:13:52 by abarnett          #+#    #+#             */
-/*   Updated: 2018/06/26 14:31:35 by abarnett         ###   ########.fr       */
+/*   Created: 2018/06/06 16:23:46 by abarnett          #+#    #+#             */
+/*   Updated: 2018/09/03 21:46:54 by abarnett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+size_t	ft_numlen_base(long num, int base)
 {
-	char	*cur;
+	int length;
 
-	cur = dst;
-	while (len && *src)
+	length = 1;
+	if (num < 0)
 	{
-		*cur++ = *src++;
-		--len;
+		num *= -1;
+		++length;
 	}
-	if (len)
-		ft_memset(cur, '\0', len);
-	return (dst);
+	while (num >= base)
+	{
+		num /= base;
+		++length;
+	}
+	return (length);
 }
